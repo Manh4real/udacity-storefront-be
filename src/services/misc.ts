@@ -8,7 +8,6 @@ export class MiscService {
   async getFullInfoOfCurrentUserOrders(
     userId: string
   ): Promise<IFullOrderProduct[]> {
-    console.log("??");
     try {
       const conn = await db.connect();
       const sql = "SELECT * FROM orders WHERE user_id = $1";
