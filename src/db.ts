@@ -11,6 +11,4 @@ const db = new Pool({
   port: Number(process.env.POSTGRES_PORT) || 4000,
 });
 
-console.log(process.env);
-
 export { db };

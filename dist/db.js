@@ -15,4 +15,3 @@ var db = new pg_1.Pool({
     port: Number(process.env.POSTGRES_PORT) || 4000
 });
 exports.db = db;
-console.log(process.env);
