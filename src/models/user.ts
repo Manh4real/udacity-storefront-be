@@ -42,7 +42,7 @@ export class User {
   async create(user: IUser): Promise<IUser | null> {
     try {
       const sql =
-        "INSERT INTO users (firstName, lastName, password) VALUES($1, $2) RETURNING *";
+        "INSERT INTO users (firstName, lastName, password) VALUES($1, $2, $3) RETURNING *";
       const conn = await db.connect();
 
       const hashedPassword = bcrypt.hashSync(user.password, 10);

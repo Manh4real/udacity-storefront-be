@@ -10,21 +10,46 @@ export interface IOrder {
 const orderProductModel = new OrderProduct();
 
 export class Order {
-  async create(userId: string, products: IOrderProduct[]) {
+  async create(userId: string, products: Omit<IOrderProduct, "order_id">[]) {
     try {
       const conn = await db.connect();
 
       const sql = "INSERT INTO orders (user_id) VALUES($1) RETURNING *";
-      const order = await conn.query(sql, [userId]);
+      const createOrderResult = await conn.query(sql, [userId]);
+      const order: IOrder = createOrderResult.rows[0];
 
-      const orderProducts = await orderProductModel.createMany(products);
+      const orderProducts = await orderProductModel.createMany(
+        products.map((p) => ({
+          ...p,
+          order_id: order.order_id,
+        }))
+      );
 
       conn.release();
 
-      return { order, orderProducts };
+      return { order: order, orderProducts };
     } catch (err) {
       throw new Error(
         `Could not add new order of user ${userId}. Error: ${err}`
+      );
+    }
+  }
+
+  async updateToCompleted(orderId: string): Promise<boolean> {
+    try {
+      const conn = await db.connect();
+
+      console.log({ orderId });
+      const sql = "UPDATE orders SET status = 'complete' WHERE order_id = $1";
+      const result = await conn.query(sql, [orderId]);
+
+      conn.release();
+
+      return true;
+    } catch (err) {
+      console.log(err);
+      throw new Error(
+        `Could not update order [${orderId}] status to completed. Error ${err}`
       );
     }
   }
@@ -48,7 +73,7 @@ export class Order {
   async showCurrentUserCompletedOrders(userId: string): Promise<IOrder[]> {
     try {
       const sql =
-        "SELECT * FROM orders WHERE user_id = $1 AND status = 'completed'";
+        "SELECT * FROM orders WHERE user_id = $1 AND status = 'complete'";
       const conn = await db.connect();
 
       const result = await conn.query(sql, [userId]);

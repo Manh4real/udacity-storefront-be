@@ -6,10 +6,12 @@ import productRoutes from "./routes/product";
 import orderRoutes from "./routes/order";
 import orderProductRoutes from "./routes/order-product";
 import authRoutes from "./routes/auth";
+import morgan from "morgan";
 
 const app: express.Application = express();
 const address: string = "0.0.0.0:3000";
 
+app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 app.use("/products", productRoutes);

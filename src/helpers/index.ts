@@ -10,10 +10,8 @@ export const getCreateOrderProductsQuery = (orderProducts: IOrderProduct[]) => {
   const values: any[] = [];
   let j = 0;
 
-  Object.entries(orderProducts).forEach(([index, orderProduct], i) => {
-    preparedSet.push(
-      `($${index + j + 1}, $${index + j + 2}, $${index + j + 3} )`
-    );
+  Object.entries(orderProducts).forEach(([_, orderProduct], i) => {
+    preparedSet.push(`($${i + j + 1}, $${i + j + 2}, $${i + j + 3} )`);
 
     values.push(
       +orderProduct.order_id,
@@ -25,6 +23,7 @@ export const getCreateOrderProductsQuery = (orderProducts: IOrderProduct[]) => {
   });
 
   query.push(preparedSet.join(","));
+  query.push("RETURNING *");
 
   return {
     query: query.join(" "),

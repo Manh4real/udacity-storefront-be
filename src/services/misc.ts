@@ -10,7 +10,12 @@ export class MiscService {
   ): Promise<IFullOrderProduct[]> {
     try {
       const conn = await db.connect();
-      const sql = "SELECT * FROM orders WHERE user_id = $1";
+      const sql = `
+        SELECT *, (products.price * order_products.quantity) as total_price FROM orders
+        INNER JOIN order_products ON orders.order_id = order_products.order_id
+        INNER JOIN products ON order_products.product_id = products.product_id
+        WHERE user_id = $1
+      `;
 
       const result = await conn.query(sql, [userId]);
       conn.release();
@@ -27,8 +32,11 @@ export class MiscService {
     userId: string
   ): Promise<IFullOrderProduct[] | null> {
     try {
-      const sql =
-        "SELECT * FROM orders WHERE user_id = $1 AND status = 'completed'";
+      const sql = `SELECT *, (products.price * order_products.quantity) as total_price FROM orders
+          INNER JOIN order_products ON orders.order_id = order_products.order_id
+          INNER JOIN products ON order_products.product_id = products.product_id
+          WHERE user_id = $1 AND status = 'complete'
+        `;
       const conn = await db.connect();
 
       const result = await conn.query(sql, [userId]);

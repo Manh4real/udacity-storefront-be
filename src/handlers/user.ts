@@ -17,7 +17,13 @@ export const getUsers: RequestHandler = async (req, res) => {
 
 export const getUserById: RequestHandler = async (req, res) => {
   try {
-    const { user_id } = res.locals;
+    // GET current user
+    // const {
+    //   user: { user_id },
+    // } = res.locals;
+
+    // GET specified user
+    const { id: user_id } = req.params;
     const user = await model.show(user_id);
 
     res.status(200).send(user);

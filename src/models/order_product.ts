@@ -30,9 +30,7 @@ export class OrderProduct {
     }
   }
 
-  async createMany(
-    orderProducts: IOrderProduct[]
-  ): Promise<IOrderProduct | null> {
+  async createMany(orderProducts: IOrderProduct[]): Promise<IOrderProduct[]> {
     try {
       const { query, values } = getCreateOrderProductsQuery(orderProducts);
       const conn = await db.connect();
@@ -40,7 +38,7 @@ export class OrderProduct {
       const result = await conn.query(query, values);
       conn.release();
 
-      return result.rows[0];
+      return result.rows;
     } catch (err) {
       throw new Error(
         `Could not add new order products [${orderProducts
