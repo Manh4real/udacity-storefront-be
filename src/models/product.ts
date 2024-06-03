@@ -1,7 +1,7 @@
 import { db } from "../db";
 
 interface IProduct {
-  product_id: string;
+  product_id: number;
   name: string;
   price: number;
   category: string;

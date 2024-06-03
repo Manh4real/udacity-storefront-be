@@ -1,6 +1,6 @@
-# Storefront Backend Project
+### Storefront Backend Project
 
-- **Environment variables**:
+- ## Environment variables:
 
   - **POSTGRES_HOST**=127.0.0.1
   - **POSTGRES_PORT**=4000
@@ -9,20 +9,27 @@
   - **POSTGRES_PASSWORD**=storefront_db
   - **JWT_SECRET**=722e356fd4e51a265044b27803ec8bfc095f9fdf13abc68605f23eec9d172b26817c5488b151034123be15f79f287f9b
 
-- To init project run: **npm i**
-- To start project run: **npm run watch**
-- Run migration: **npx db-migrate up**
+- ## Commands
 
-- Pull Postgres image and run container with these env variables:
-  **POSTGRES_HOST**=127.0.0.1
-  **POSTGRES_PORT**=4000
-  **POSTGRES_DB**=storefront
-  **POSTGRES_USER**=storefront_user
-  **POSTGRES_PASSWORD**=storefront_db
+  - To init project run: **npm i**
+  - To start project run: **npm start**
+  - To run test scripts: **npm run test**. Update ENV=test in .env to run test properly
+  - Run migrations: **npx db-migrate up**
 
-- The BE run on port 3000 and 4000 for the database
+- ## Docker
 
-- **SCHEMAS**:
+  - Pull Postgres image and run container with these env variables:
+    - **POSTGRES_HOST**=127.0.0.1
+    - **POSTGRES_PORT**=4000
+    - **POSTGRES_DB**=storefront
+    - **POSTGRES_USER**=storefront_user
+    - **POSTGRES_PASSWORD**=storefront_db
+
+- ## PORTS
+
+  - The BE run on port 3000 and 4000 for the database
+
+- ## SCHEMAS:
 
   - **products** (
     product_id serial primary key,
@@ -51,9 +58,7 @@
     quantity int
     );
 
-**!IMPORTANT**: Use /login with request body {firstName: 'admin', lastName: 'admin', password: '123456'} to authenticate
-
-- **ROUTES**
+- ## ROUTES
 
   - **POST** /auth/login - Authenticate user - must use this request body first to authenticate: **{firstName: 'admin', lastName: 'admin', password: '123456'}**
 
