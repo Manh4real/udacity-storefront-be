@@ -17,7 +17,8 @@ export const updateOrderToCompleted: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot POST update order to completed",
+      message: "Cannot POST update order to completed",
+      error: err,
     });
   }
 };
@@ -39,7 +40,8 @@ export const createOrder: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot POST order",
+      message: "Cannot POST order",
+      error: err,
     });
   }
 };
@@ -56,7 +58,8 @@ export const createOrderByUserId: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot POST order of the specified user",
+      message: "Cannot POST order of the specified user",
+      error: err,
     });
   }
 };
@@ -76,7 +79,8 @@ export const getCurrentUserOrders: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot GET orders of current user",
+      message: "Cannot GET orders of current user",
+      error: err,
     });
   }
 };
@@ -101,7 +105,8 @@ export const getCurrentUserCompletedOrders: RequestHandler = async (
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot GET completed orders of current user",
+      message: "Cannot GET completed orders of current user",
+      error: err,
     });
   }
 };
@@ -120,7 +125,8 @@ export const getOrdersByUserId: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot GET orders of specified user",
+      message: "Cannot GET orders of specified user",
+      error: err,
     });
   }
 };
@@ -141,7 +147,8 @@ export const getCompletedOrdersByUserId: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot GET completed orders of specified user",
+      message: "Cannot GET completed orders of specified user",
+      error: err,
     });
   }
 };

@@ -11,6 +11,7 @@ export const getUsers: RequestHandler = async (req, res) => {
     res.status(500).send({
       status: 500,
       message: "Cannot GET users",
+      error: err,
     });
   }
 };
@@ -31,6 +32,7 @@ export const getUserById: RequestHandler = async (req, res) => {
     res.status(500).send({
       status: 500,
       message: "Cannot GET user",
+      error: err,
     });
   }
 };
@@ -45,6 +47,7 @@ export const createUser: RequestHandler = async (req, res) => {
     res.status(500).send({
       status: 500,
       message: "Cannot POST user",
+      error: err,
     });
   }
 };

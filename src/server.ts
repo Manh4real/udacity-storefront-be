@@ -1,14 +1,16 @@
 import express from "express";
 import bodyParser from "body-parser";
+import morgan from "morgan";
+import dotenv from "dotenv";
 
 import userRoutes from "./routes/user";
 import productRoutes from "./routes/product";
 import orderRoutes from "./routes/order";
 import orderProductRoutes from "./routes/order-product";
 import authRoutes from "./routes/auth";
-import morgan from "morgan";
 
-const app: express.Application = express();
+dotenv.config();
+export const app: express.Application = express();
 const address: string = "0.0.0.0:3000";
 
 app.use(morgan("dev"));

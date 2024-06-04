@@ -46,7 +46,8 @@ export const login: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot login",
+      message: "Cannot login",
+      error: err,
     });
   }
 };

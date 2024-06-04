@@ -17,7 +17,8 @@ export const createOrderProduct: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      error: "Cannot POST order product",
+      message: "Cannot POST order product",
+      error: err,
     });
   }
 };

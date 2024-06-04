@@ -11,6 +11,7 @@ export const getProducts: RequestHandler = async (req, res) => {
     res.status(500).send({
       status: 500,
       message: "Cannot GET products",
+      error: err,
     });
   }
 };
@@ -25,6 +26,7 @@ export const getProductById: RequestHandler = async (req, res) => {
     res.status(500).send({
       status: 500,
       message: "Cannot GET product",
+      error: err,
     });
   }
 };
@@ -39,6 +41,7 @@ export const createProduct: RequestHandler = async (req, res) => {
     res.status(500).send({
       status: 500,
       message: "Cannot POST product",
+      error: err,
     });
   }
 };

@@ -39,7 +39,6 @@ export class Order {
     try {
       const conn = await db.connect();
 
-      console.log({ orderId });
       const sql = "UPDATE orders SET status = 'complete' WHERE order_id = $1";
       const result = await conn.query(sql, [orderId]);
 
@@ -47,7 +46,6 @@ export class Order {
 
       return true;
     } catch (err) {
-      console.log(err);
       throw new Error(
         `Could not update order [${orderId}] status to completed. Error ${err}`
       );
