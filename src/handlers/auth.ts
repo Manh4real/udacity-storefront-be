@@ -18,10 +18,11 @@ export const login: RequestHandler = async (req, res) => {
     const result = await db.query(selectUserSql, [user_id]);
     const user = result.rows[0] as IUser;
 
+    console.log({ password, uP: user.password });
     if (user) {
       const isValid = bcrypt.compareSync(password, user.password);
 
-      if (isValid) {
+      if (!isValid) {
         res.status(403).send({
           status: 403,
           error: "Wrong userID or password",
@@ -46,7 +47,7 @@ export const login: RequestHandler = async (req, res) => {
   } catch (err) {
     res.status(500).send({
       status: 500,
-      message: "Cannot login",
+      message: "Cannot login. The user doesn't exist",
       error: err,
     });
   }
