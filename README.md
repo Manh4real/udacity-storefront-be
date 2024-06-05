@@ -8,6 +8,7 @@
   - **POSTGRES_USER**=storefront_user
   - **POSTGRES_PASSWORD**=storefront_db
   - **JWT_SECRET**=722e356fd4e51a265044b27803ec8bfc095f9fdf13abc68605f23eec9d172b26817c5488b151034123be15f79f287f9b
+  - **ENV**=dev
 
 - ## Commands
 
@@ -24,7 +25,8 @@
     - **POSTGRES_DB**=storefront
     - **POSTGRES_USER**=storefront_user
     - **POSTGRES_PASSWORD**=storefront_db
-  - **Note**: Must manually create ``storefront_test`` database in order to run tests properly
+  - **Note**: Must manually create `storefront_test` database in order to run tests properly
+
 - ## PORTS
 
   - The BE run on port 3000 and 4000 for the database
