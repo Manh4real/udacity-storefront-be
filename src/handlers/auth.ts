@@ -18,7 +18,6 @@ export const login: RequestHandler = async (req, res) => {
     const result = await db.query(selectUserSql, [user_id]);
     const user = result.rows[0] as IUser;
 
-    console.log({ password, uP: user.password });
     if (user) {
       const isValid = bcrypt.compareSync(password, user.password);
 
