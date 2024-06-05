@@ -60,6 +60,8 @@
     quantity int
     );
 
+  **NOTE**: Creating entity order: User -> Product -> Order. And OrderProduct will be automatically created if we use below POST create order route
+
 - ## ROUTES
 
   - **POST** /auth/login - Authenticate user - must use this request body first to authenticate: **{firstName: 'admin', lastName: 'admin', password: '123456'}**
