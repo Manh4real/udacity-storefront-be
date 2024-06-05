@@ -5,6 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "start": "npx nodemon dist/src/server.js",
+    "build": "npx rimraf dist && tsc",
     "watch": "npx rimraf dist && tsc --watch",
     "test": "ENV=test db-migrate --env test up && jasmine || true && db-migrate --env test reset"
   },
