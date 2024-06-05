@@ -24,7 +24,7 @@
     - **POSTGRES_DB**=storefront
     - **POSTGRES_USER**=storefront_user
     - **POSTGRES_PASSWORD**=storefront_db
-
+  - **Note**: Must manually create ``storefront_test`` database in order to run tests properly
 - ## PORTS
 
   - The BE run on port 3000 and 4000 for the database
