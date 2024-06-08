@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
@@ -21,6 +22,13 @@ app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
 app.use("/order-products", orderProductRoutes);
 app.use("/auth", authRoutes);
+
+app.use("/default-product-image", (req, res) => {
+  const _path = path.resolve(__dirname, "../../src/assets/images");
+  const filePath = `${_path}/default-product-image.png`;
+
+  res.sendFile(filePath);
+});
 
 app.listen(3000, function () {
   console.log(`starting app on: ${address}`);
