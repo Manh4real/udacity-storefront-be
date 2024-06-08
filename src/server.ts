@@ -3,6 +3,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import userRoutes from "./routes/user";
 import productRoutes from "./routes/product";
@@ -14,6 +15,7 @@ dotenv.config();
 export const app: express.Application = express();
 const address: string = "0.0.0.0:3000";
 
+app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
