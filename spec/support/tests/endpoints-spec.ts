@@ -127,6 +127,7 @@ describe("Suite", () => {
           name: "Test Product 1",
           price: 200,
           category: "test category 1",
+          image_url: "",
         };
 
         it("create method should add a product", async () => {

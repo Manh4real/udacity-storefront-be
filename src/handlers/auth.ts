@@ -40,6 +40,11 @@ export const login: RequestHandler = async (req, res) => {
           accessToken: token,
         });
       }
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: "The user doesn't exist",
+      });
     }
 
     conn.release();
